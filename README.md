@@ -1,4 +1,4 @@
-# Whales of Wallstreet
+# What Goes up Must Come Down
 Includes the files (R-codes, excel document and other quantitative documents)
 
 This zip includes the following:
@@ -11,6 +11,7 @@ This zip includes the following:
 7. Excel file with aggregate cryptocurrency search volume with data based on "crpto pump and dump new", "crypto pump group new", "crypto telegram group new"
 8. Folder with Walletexplorer gambling files; these files represent Bitcoin gambling volumes between January and June 2021
 9. Folder with coin data between Januari to February (Excel)
+10. The Excel document "Finance Thesis Data" includes the
 
 
 
@@ -19,4 +20,3 @@ This zip includes the following:
 
 
 
-s
