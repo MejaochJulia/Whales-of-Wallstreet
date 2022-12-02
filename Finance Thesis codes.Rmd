@@ -1,0 +1,194 @@
+```{r}
+
+library(rio)
+library(stargazer)
+library(tidyverse)
+library(magrittr)
+library(ggthemes)
+library(expss)
+library(sandwich)
+library(estimatr)
+library(magrittr)
+library(ggthemes)
+library(rmarkdown)
+library(knitr)
+library(readxl)
+library(kableExtra)
+library(tinytex)
+library(broom)
+library(lmtest)
+library(mosaic)
+library(AER)
+library(Rcpp)
+library(httr)
+library(jsonlite)
+library(curl)
+library(openxlsx)
+
+setwd("/Users/juliaqiu/Desktop/Finance Thesis")
+getwd()
+
+```
+
+
+
+Tiingo API
+```{r}
+
+#Getting data from the Tiingo API
+res <- GET("https://api.tiingo.com/tiingo/crypto/prices?tickers=blzbtc&startDate=2021-02-03&endDate=2021-02-05&exchanges=Binance&resampleFreq=1min&token= insert API key here")
+
+data = fromJSON(rawToChar(res$content))
+show(data)
+
+binddata<- data.frame(data, data[[4]][[1]])
+export(binddata, "omgbtc4febNEW.xlsx")
+
+```
+
+Collecting price peaks after the pump signal
+
+```{r}
+
+#slicing the data where the pump signal starts
+df <- read_excel("wabibtc20jun.xlsx")
+
+mm <- df %>% slice(809:1440)
+
+#picking the price maximum for the coin 
+which.max(mm$high)
+
+```
+
+Calculationg of gambling proxy
+
+```{r}
+
+#calculating the proxy for gambling
+df <- read_excel("Gambling Proxy.xlsx")
+
+gamblingUSD <- df$`Gambling USD`
+market <- df$`volume (market)`
+
+#taking three lags of market revenue
+lagmarket <- lag(market, k = 3)
+lagreturns <- lag(returns, k = 3)
+
+lgmarket <- log(market)
+lggamblingUSD <- log(gamblingUSD)
+lglagmarket <- log(lagmarket)
+
+gamblingproxy <- lm(lggamblingUSD ~ lgmarket + lglagmarket, data = df)
+summary(gamblingproxy)
+
+resid <- resid(gamblingproxy)
+view(resid)
+
+write.xlsx(resid2, "residualsgamblingNEW.xlsx")
+
+
+```
+
+Main Regression (price peaks after the pump start)
+
+```{r}
+
+regN <- read_excel("RegNew.xlsx")
+
+partN <- regN$`Volume3h`
+
+Manipulators <- regN$`PumpGroupNumbers`
+members1 <- regN$`PumpMembers`
+Gambling <- regN$`ProxyGambling`
+Overconfidence <- regN$`Overconfidenceproxy`
+Liquidity <- regN$`Liquidity`
+Participation <- log(partN)
+
+Members <- log(members1)
+
+model1n <- lm(Participation ~ Overconfidence + Liquidity, data = regN)
+model2n <- lm(Participation ~ Gambling + Liquidity, data = regN)
+model3n <- lm(Participation ~ Manipulators + Members + Liquidity, data = regN)
+model4n <- lm(Participation ~ Gambling + Overconfidence + Manipulators + Members + Liquidity, data = regN)
+
+tableregression <- stargazer(list(model1n, model2n, model3n, model4n), omit.stat = c("ser","f") ,type="text", out="Intreg.doc")
+
+
+```
+
+Alternative regression (peaks before pump start included)
+
+```{r}
+
+regAlt <- read_excel("AlternativeRegression.xlsx")
+
+participationalt <- regAlt$`Volume3`
+ManipulatorsAlt <- regAlt$`Pump group number`
+membersAlt <- regAlt$`Pump members`
+GamblingAlt <- regAlt$`GamblingProxy`
+OverconfidenceAlt <- regAlt$`ProxyOverconfidence`
+LiquidityAlt <- regAlt$`Liquidity`
+ParticipationAlt <- log(participationalt)
+
+MembersAlt <- log(membersAlt)
+
+model1a <- lm(ParticipationAlt ~ OverconfidenceAlt + LiquidityAlt, data = regAlt)
+model2a <- lm(ParticipationAlt ~ GamblingAlt + LiquidityAlt, data = regAlt)
+model3a <- lm(ParticipationAlt ~ ManipulatorsAlt + MembersAlt + LiquidityAlt, data = regAlt)
+model4a <- lm(ParticipationAlt ~ GamblingAlt + OverconfidenceAlt + ManipulatorsAlt + MembersAlt + LiquidityAlt, data = regAlt)
+
+tableregression <- stargazer(list(model1a, model2a, model3a, model4a), omit.stat = c("ser","f") ,type="text", out="Regression.out")
+
+```
+
+Robustness tests
+
+```{r}
+
+#Heteroskedasticity - Breusch Pagan
+library(lmtest)
+
+#Main regression
+bp4n <- bptest(model4n, data = regN, studentize = FALSE)
+show(bp4n)
+
+#Alternative regression
+bp4a <-bptest(model4a, data = regAlt, studentize = FALSE)
+show(bp4a)
+
+#Multicollinearity
+library(car)
+ModelaVIF<- vif(model4a)
+show(ModelaVIF)
+
+ModelnVIF<- vif(model4n)
+show(ModelnVIF)
+
+#Normality - jarque bera test
+library(tseries)
+res1a <- resid(model4a)
+res1n <- resid(model4n)
+
+jarque.bera.test(res1a)
+jarque.bera.test(res1n)
+
+
+```
+
+Robust regression
+
+```{r}
+
+#Main Regression robust
+model4nR <- lm_robust(Participation ~ Gambling + Overconfidence + Manipulators + Members + Liquidity, data = regN, se_type = "HC1")
+summary(model4nR)
+
+#Alternative Regression rovust
+model4aR <- lm_robust(ParticipationAlt ~ GamblingAlt + OverconfidenceAlt + ManipulatorsAlt + MembersAlt + LiquidityAlt, data = regAlt, se_type = "HC1")
+summary(model4aR)
+
+
+
+```
+
+
