@@ -17,7 +17,7 @@ This zip includes the following:
 9. Folder with Walletexplorer gambling files; these files represent Bitcoin gambling volumes between January and June 2021
 10. Folder with coin data between Januari to February (Excel)
 11. The Excel document "Finance Thesis Data" includes 6 sheets: 1. Telegram Groups: includes the names of the pump groups we have documented and whether they are active during 2021 and 2022. 2. Main Table Data: includes our 114 hand collected coins that have been pumped. This is what our regressions are based on. VWAP = value weighted average price. 3. Alternative table data: this data is not the basis for our main analysis but another dataset that we compare with the main dataset and also contains price information about our coins. 4. Daily Bitcoin Returns are from Yahoo Finance. 5. Aggregate trading volume from Cryptocompare.com. 6. Our sheet about Walletexplorer data cointains information from the folder with Bitcoin gambling trading data. For each day between January and June, we documented the day's opening and closing values.
-12. Excel file with regression file data
+12. Excel file with regression file data. Regression main is the main base for of thesis wheras the aternative regression is the basis in our Appendix
 
 
 
