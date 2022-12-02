@@ -1,7 +1,7 @@
 # What Goes up Must Come Down
 Contact:
 Meja Winbo: 25186@student.hhs.se
-Julia Qui: 25023@student.hhs.se
+Julia Qiu: 25023@student.hhs.se
 
 Our GitHub includes files (R-codes, excel document and other quantitative documents) to the largest extent possible with regards to GDPR.
 In our R-files, the adresses to our working directories and files on our computers are shown, working as a guidance for where you should put the adress to your computer and working directory. When running the code, simply delete our adresses and paste your own.
