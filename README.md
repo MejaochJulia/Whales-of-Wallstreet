@@ -10,7 +10,7 @@ This zip includes the following:
 6. Excel file with Kucoin Bondly data for section 3
 7. Excel file with aggregate cryptocurrency search volume with data based on "crpto pump and dump new", "crypto pump group new", "crypto telegram group new"
 8. Folder with Walletexplorer gambling files; these files represent Bitcoin gambling volumes between January and June 2021
-9. 
+9. Folder with coin data between Januari to February (Excel)
 
 
 
