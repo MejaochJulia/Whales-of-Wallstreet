@@ -25,20 +25,20 @@ This zip includes the following:
 Figure:
 1a and 1b are from Telegram chats explained in our thesis.
 2 and is made from our Kucoin Bondly data and our code for the section 3 analysis
-4, 5, 6, 8, 9, 10 and 11 are based on our "Finance Thesis Data" with the belonging table data sheet
+4, 5, 6, 8, 9, 10 and 11 are based on our "Finance Thesis Data" with the belonging table data sheet. 
 7 is based on our code for figure 7 and excel file with aggregate cryptocurrency search volume
 B is based on Dhawan and Putnins (2022) study: "A New Wolf in Town? Pump-and-Dump Manipulation in Cryptocurrency Markets".
 C is based on Dhawan and Putnins (2022) study: "A New Wolf in Town? Pump-and-Dump Manipulation in Cryptocurrency Markets".
 E1 (Jarque Bera Test – Testing for Normality), E2 (Breusch Pagan Test – Testing for Heteroskedasticity), E3 (Variance Inflation Factor (VIF) – Testing for Multicollinearity), F1 (Cross correlation on Pumps per day Against Bitcoin Prices) and F2 (Cross correlation on Pump Returns Against Bitcoin Prices – Testing for Optimal Time lag) are based on the R file Finance thesis.rmd.
 
 Table:
-1-3 are based on our finance thesis data
+1-3 are based on our finance thesis data (excel)
 4 is from "Finance thesis codes"
 C, D1, D2, E1, E2, E3 are from finance thesis codes (R) 
 F1 and F2 are from Correlation martrix (R)
 
 
-
+The excel document "running the code" explains further how to run the code for tables and figures
 
 
 
