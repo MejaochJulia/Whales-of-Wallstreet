@@ -19,7 +19,23 @@ This zip includes the following:
 10. Folder with coin data between Januari to February (Excel)
 11. The Excel document "Finance Thesis Data" includes 6 sheets: 1. Telegram Groups: includes the names of the pump groups we have documented and whether they are active during 2021 and 2022. 2. Main Table Data: includes our 114 hand collected coins that have been pumped. This is what our regressions are based on. VWAP = value weighted average price. 3. Alternative table data: this data is not the basis for our main analysis but another dataset that we compare with the main dataset and also contains price information about our coins. 4. Daily Bitcoin Returns are from Yahoo Finance. 5. Aggregate trading volume from Cryptocompare.com. 6. Our sheet about Walletexplorer data cointains information from the folder with Bitcoin gambling trading data. For each day between January and June, we documented the day's opening and closing values.
 12. Excel file with regression file data. Regression main is the main base for of thesis wheras the aternative regression is the basis in our Appendix
+13. Excel file with data used in our correlation matrix (Figure F1 and F2) named CorMat.
+14. Our code (R) for generating our correlation matrix.
 
+Figure:
+1a and 1b are from Telegram chats explained in our thesis.
+2 and is made from our Kucoin Bondly data and our code for the section 3 analysis
+4, 5, 6, 8, 9, 10 and 11 are based on our "Finance Thesis Data" with the belonging table data sheet
+7 is based on our code for figure 7 and excel file with aggregate cryptocurrency search volume
+B is based on Dhawan and Putnins (2022) study: "A New Wolf in Town? Pump-and-Dump Manipulation in Cryptocurrency Markets".
+C is based on Dhawan and Putnins (2022) study: "A New Wolf in Town? Pump-and-Dump Manipulation in Cryptocurrency Markets".
+E1 (Jarque Bera Test – Testing for Normality), E2 (Breusch Pagan Test – Testing for Heteroskedasticity), E3 (Variance Inflation Factor (VIF) – Testing for Multicollinearity), F1 (Cross correlation on Pumps per day Against Bitcoin Prices) and F2 (Cross correlation on Pump Returns Against Bitcoin Prices – Testing for Optimal Time lag) are based on the R file Finance thesis.rmd.
+
+Table:
+1-3 are based on our finance thesis data
+4 is from "Finance thesis codes"
+C, D1, D2, E1, E2, E3 are from finance thesis codes (R) 
+F1 and F2 are from Correlation martrix (R)
 
 
 
