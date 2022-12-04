@@ -1,0 +1,31 @@
+```{r}
+
+library(readxl)
+library(openxlsx)
+
+setwd("/Users/juliaqiu/Desktop/Finance Thesis")
+getwd()
+
+```
+
+Correlation matrix
+```{r}
+
+CorMat <- read_excel("CorMat.xlsx")
+
+BitcoinPrice <- CorMat$BitcoinNormalized
+PumpsPerDay <- CorMat$PumpsperdayNormalized
+PumpReturns <- CorMat$PumpreturnsNormalized
+
+#correlation matrix Normalized Pumps per day
+cor_pumpsperday <- ccf(PumpsPerDay, BitcoinPrice)
+print(cor_pumpsperday)
+
+#correlation matrix Normalized Pumps Returns
+cor_pumpreturns <- ccf(PumpReturns, BitcoinPrice)
+print(cor_pumpreturns)
+
+
+```
+
+
